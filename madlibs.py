@@ -37,46 +37,36 @@ def greet_person():
 
     compliment = choice(AWESOMENESS)
 
-    return render_template("compliment.html",
+    return render_template("greet.html",
                            person=player,
                            compliment=compliment)
 
-@app.route('/game')
-def show_madlip_form():
-    """Take user to game form."""
-
-    game_response = request.args.get("play_game")
-    if game_response == "no":
-        return render_template("goodbye.html")
-    else:    
-        # color = request.args.get("color_type")
-        # noun = request.args.get("noun_type")
-        # person = request.args.get("adjective_type")
-        # adjective = request.args.get("person_type")
-
-        return render_template("play_game.html")
 
 @app.route('/play_game')
 def play_game():
     """Plays game."""
+    game_response = request.args.get("play_game")
+    if game_response == "no":
+        return render_template("goodbye.html")
+    else: 
+        color = request.args.get("color_type")
+        noun = request.args.get("noun_type")
+        person = request.args.get("adjective_type")
+        adjective = request.args.get("person_type")
+        
+        return render_template("play_game.html",
+                            color_type=color,
+                            noun_type=noun,
+                            person_type=person,
+                            adjective_type=adjective)
+                
 
+@app.route('/madlibs')
+def show_madlib():
     color = request.args.get("color_type")
     noun = request.args.get("noun_type")
     person = request.args.get("adjective_type")
     adjective = request.args.get("person_type")
-    
-    return render_template("madlibs.html")
-                            # color=color_type,
-                            # noun=noun_type,
-                            # person=person_type,
-                            # adjective=adjective_type)
-
-@app.route('/madlibs')
-def show_madlib():
-
-    color, noun, person, adjective = request.args.get("color_type", "noun_type", 
-                                                    "person_type", "adjective_type")
-    #color, noun, person, adjective = request.args.get("/play_game")
     return render_template("madlibs.html")
 
 if __name__ == '__main__':
