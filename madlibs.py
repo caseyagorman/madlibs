@@ -49,21 +49,35 @@ def show_madlip_form():
     if game_response == "no":
         return render_template("goodbye.html")
     else:    
-        return render_template("play_game.html",
-                            play_game=game_response)
+        # color = request.args.get("color_type")
+        # noun = request.args.get("noun_type")
+        # person = request.args.get("adjective_type")
+        # adjective = request.args.get("person_type")
+
+        return render_template("play_game.html")
 
 @app.route('/play_game')
 def play_game():
     """Plays game."""
 
+    color = request.args.get("color_type")
+    noun = request.args.get("noun_type")
+    person = request.args.get("adjective_type")
+    adjective = request.args.get("person_type")
+    
+    return render_template("madlibs.html")
+                            # color=color_type,
+                            # noun=noun_type,
+                            # person=person_type,
+                            # adjective=adjective_type)
+
+@app.route('/madlibs')
+def show_madlib():
+
     color, noun, person, adjective = request.args.get("color_type", "noun_type", 
                                                     "person_type", "adjective_type")
-
-    return render_template("play_game.html",
-                            color=color_type,
-                            noun=noun_type,
-                            person=person_type,
-                            adjective=adjective_type)
+    #color, noun, person, adjective = request.args.get("/play_game")
+    return render_template("madlibs.html")
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
