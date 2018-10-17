@@ -46,8 +46,10 @@ def show_madlip_form():
     """Take user to game form."""
 
     game_response = request.args.get("play_game")
-
-    return render_template("compliment.html",
+    if game_response == "no":
+        return render_template("goodbye.html")
+    else:    
+        return render_template("compliment.html",
                             play_game=game_response)
 
 if __name__ == '__main__':
