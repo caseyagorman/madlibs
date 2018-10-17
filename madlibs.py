@@ -49,8 +49,21 @@ def show_madlip_form():
     if game_response == "no":
         return render_template("goodbye.html")
     else:    
-        return render_template("compliment.html",
+        return render_template("play_game.html",
                             play_game=game_response)
+
+@app.route('/play_game')
+def play_game():
+    """Plays game."""
+
+    color, noun, person, adjective = request.args.get("color_type", "noun_type", 
+                                                    "person_type", "adjective_type")
+
+    return render_template("play_game.html",
+                            color=color_type,
+                            noun=noun_type,
+                            person=person_type,
+                            adjective=adjective_type)
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
