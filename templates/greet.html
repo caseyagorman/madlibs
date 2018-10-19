@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+  <title>Game options</title>
+{% block content %}
+    Hi {{ person }}! Would you like to play a game?
+
+<form action="/play_game"> 
+  <input type="radio" name="play_game" value="yes">Yes
+  <input type="radio" name="play_game" value="no">No  
+  <input type="submit">
+</form>
+{% endblock %}

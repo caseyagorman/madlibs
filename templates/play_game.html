@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+  <title>Play Game</title>
+{% block content %}
+  Hi! Pick a color. 
+ 
+
+  <form action="/madlibs">
+  <div class="form-group">
+  <div class="form check">
+    {% for button in buttons %}
+      <input class="form-check-input" type="radio" name="color", value="{{ button }}">{{ button }}
+    {% endfor %}
+  </div>
+</div>
+  Pick a noun.
+
+  Noun:
+  <div class="form-group">
+  <div>
+    {% for noun in noun_choice %}
+      <button type="radio" class="form-control" name="noun", value="{{ noun }}">{{ noun }}</button>
+    {% endfor %}
+  </div>
+  </div>
+
+  Pick a person.
+
+  Name: <input type="text" name="person" value="You">
+
+  Pick an adjective.
+  <div class="form-group">
+ <div>
+    {% for adjective in adjective_choice %}
+      <button type="radio" class="form-control" name="adjective", value="{{ adjective }}">{{ adjective }}</button>
+    {% endfor %}
+  </div>
+  </div>
+ 
+    <input type="submit">
+  </form>
+</div>
+{% endblock %}
