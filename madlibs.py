@@ -41,16 +41,22 @@ def greet_person():
                            person=player,
                            compliment=compliment)
 
+COLORS = ["purple", "blue", "green", "yellow", "pink"]
+NOUNS = ["box", "chair", "man", "toothbrush", "dongle"]
+ADJECTIVES = ["brilliant", "bitch'in", "cool", "crunchy", "sad"]
 
 @app.route('/play_game')
 def play_game():
     """Plays game."""
+
     game_response = request.args.get("play_game")
     if game_response == "no":
         return render_template("goodbye.html")
     else:         
-        return render_template("play_game.html")
-                
+        return render_template("play_game.html", 
+                                buttons=COLORS,
+                                noun_choice=NOUNS,
+                                adjective_choice=ADJECTIVES)
 
 @app.route('/madlibs')
 def show_madlib():
